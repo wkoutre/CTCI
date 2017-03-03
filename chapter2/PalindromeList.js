@@ -1,5 +1,4 @@
-const List = require('./LinkedLists.js').List;
-const makeList = require('./LinkedLists.js').makeList;
+const { List, makeList } = require('./LinkedLists');
 
 const palindromeList = (list) => {
 	if (!list)
@@ -17,39 +16,41 @@ const palindromeList = (list) => {
 	Instead, I'm going to create another list -- a copy of the first -- , reverse it, and compare the two lists
 
 	*/
+
 	let copy = new List(list.data);
 	let rev = copy;
 	let head = list, len = 0;
+	if (list.data !== null)
+		len++;
 	list = list.next;
+	if (len === 0)
+		throw new Error('Please input a valid list.');
+
 	while (list){
 		len++;
 		copy.pushFront(list.data);
 		list = list.next;
 	}
 
-	console.log(`Len = ${len}`);
-
 	if (len === 1){
 		return true;
 	}
 
-	let stopping = len % 2 === 0 ? len / 2 : Math.floor(len / 2) + 1;
+	let stopping = len % 2 === 0 ? len / 2 : Math.floor(len / 2);
+	rev.printList();
 
 	for (stopping; stopping > 0; stopping--){
-		console.log('Rev data:', rev.data);
-		console.log('Head data:', head.next.data);
+		// console.log('Rev data:', rev.data);
+		// console.log('Head data:', head.data);
 
-		if (copy.head.data !== head.data)
+		if (rev.head.data !== head.data)
 			return false;
-		copy.head = copy.head.next;
+		rev.head = rev.head.next;
 		head = head.next;
 	}
 
 	return true;
 }
 
-const test = () => {
-	let list1 = makeList('hannah'.split(''));
-
-	palindromeList(makeList('hannah'.split('')).head)
-}
+let list1 = makeList('palsp'.split(''));
+console.log(palindromeList(list1.head));
