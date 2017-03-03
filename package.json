@@ -1,0 +1,22 @@
+{
+  "name": "js_algos",
+  "version": "1.0.0",
+  "description": "Algorithms in Javascript",
+  "main": "LinkedLists.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "CTCI",
+    "algorithms"
+  ],
+  "author": "Nick Koutrelakos",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.23.0"
+  },
+  "dependencies": {
+    "babel": "^6.23.0",
+    "eslint": "^3.16.1"
+  }
+}
