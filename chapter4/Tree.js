@@ -12,6 +12,9 @@ class Tree {
 		this.root = null;
 	}
 
+
+	// adds to form a binary search tree (BST)
+
 	add(data){
 		let node = new TreeNode(data);
 		if (!this.root){
@@ -29,6 +32,30 @@ class Tree {
 			node.parent = n;
 			n[branch] = node;
 		}
+	}
+
+
+	// add to left of left-most node
+
+	addLeft(data){
+		let copyRoot = this.root;
+		while (this.root.left){
+			this.root = this.root.left;
+		}
+
+		this.root.left = new TreeNode(40);
+		this.root = copyRoot;
+	}
+
+	// add to right of right-mode node
+	addRight(data){
+		let copyRoot = this.root;
+		while (this.root.right){
+			this.root = this.root.right;
+		}
+
+		this.root.right = new TreeNode(40);
+		this.root = copyRoot;
 	}
 
 	// check if the tree is balanced; that is, for any node, the difference of its children's heights is <= 1
@@ -74,7 +101,7 @@ class Tree {
 			return Math.max(leftHeight, rightHeight) + 1;
 	}
 
-	printTreeInOrder(treeRoot){
+	printTreeInOrder(treeRoot=this.root){
 		if(treeRoot) {
 			this.printTreeInOrder(treeRoot.left);
 			console.log(treeRoot.data);
@@ -82,7 +109,7 @@ class Tree {
 		}
 	}
 
-	printTreePreOrder(treeRoot){
+	printTreePreOrder(treeRoot=this.root){
 		if(treeRoot) {
 			console.log(treeRoot.data);
 			this.printTreePreOrder(treeRoot.left);
@@ -90,7 +117,7 @@ class Tree {
 		}
 	}
 
-	printTreePostOrder(treeRoot){
+	printTreePostOrder(treeRoot=this.root){
 		if(treeRoot) {
 			this.printTreePostOrder(treeRoot.left);
 			this.printTreePostOrder(treeRoot.right);
@@ -99,4 +126,4 @@ class Tree {
 	}
 }
 
-module.exports = { Tree }
+module.exports = { Tree, TreeNode }
