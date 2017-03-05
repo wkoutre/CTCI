@@ -1,23 +1,23 @@
-class Node {
-	constructor(data) {
-		this.data = data;
-		this.left = null;
-		this.right = null;
-	}
-};
+const { Tree } = require('./Tree');
 
-isOdd = (arr) => {
-	return arr.length % 2 === 0 ? false : true;
+const minimalTree = (arr, start=0, end) => {
+	let tree = new Tree();
+
+	if (arr && arr.length){
+		add(tree, arr, 0, arr.length - 1);
+	}
+	return tree;
 }
 
-const minimalTree = (arr) => {
-	let midIndex = Math.floor(arr.length / 2);
-	let tree = new Node(arr[midIndex]);
-	if (isOdd(arr)){
-
-	} else {
-
+const add = (tree, arr, start, end) => {
+	if (start === end)
+		tree.add(arr[start]);
+	else if (start < end){
+		let mid = Math.floor((start + end) / 2);
+		tree.add(arr[mid]);
+		add(tree, arr, start, mid - 1);
+		add(tree, arr, mid + 1, end);
 	}
 };
 
-module.exports = { minimalTree, Node };
+module.exports = { minimalTree };
