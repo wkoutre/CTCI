@@ -5,7 +5,7 @@ const { minimalTree } = require('../MinimalTree');
 const { bstValidation } = require('../bstValidation');
 
 describe('BST Validation', () => {
-	it('Validates with a 5-number BST', () => {
+	it('Returns true with a 5-number BST', () => {
 		let arr = '12345'.split('').map(Number);
 		let tree = minimalTree(arr).node;
 
@@ -59,5 +59,15 @@ describe('BST Validation', () => {
 
 		// tree.printTreePreOrder();
 		assert.equal(bstValidation(tree.root), false);
+	});
+
+	it('Returns true with a 100-number BST', () => {
+		let arr = [];
+		for (let i = 1; i < 101; i++){
+			arr.push(i);
+		}
+		let tree = minimalTree(arr).node;
+
+		assert.equal(bstValidation(tree), true);
 	});
 })
