@@ -1,6 +1,6 @@
 const { Tree } = require('./Tree');
 
-const minimalTree = (arr, start=0, end) => {
+const minimalTree = (arr, start=0, end=arr.length) => {
 	let tree = new Tree();
 
 	if (arr && arr.length){

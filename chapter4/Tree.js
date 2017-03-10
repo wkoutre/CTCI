@@ -1,7 +1,7 @@
 class TreeNode {
-	constructor(data) {
+	constructor(data, parent=null) {
 		this.data = data;
-		this.parent = null;
+		this.parent = parent;
 		this.left = null;
 		this.right = null;
 	}
@@ -35,6 +35,28 @@ class Tree {
 	}
 
 
+	// given a Tree, this returns a Tree with the root having traveled left n places from the beginning
+
+	goLeft(n, tree) {
+		for (let i = 0; i < n; i++){
+			if (!tree.root.left)
+				throw new Error(`Cannot go further left than ${i + 1} moves.`)
+			tree.root = tree.root.left;
+		}
+		return tree;
+	}
+
+	// given a Tree, this returns a Tree with the root having traveled right n places from the beginning
+
+	goRight(n, tree) {
+		for (let i = 0; i < n; i++){
+			if (!tree.root.right)
+				throw new Error(`Cannot go further right than ${i + 1} moves.`)
+			tree.root = tree.root.right;
+		}
+		return tree;
+	}
+
 	// add to left of left-most node
 
 	addLeft(data){
@@ -43,18 +65,19 @@ class Tree {
 			this.root = this.root.left;
 		}
 
-		this.root.left = new TreeNode(40);
+		this.root.left = new TreeNode(data, this.root);
 		this.root = copyRoot;
 	}
 
 	// add to right of right-mode node
+
 	addRight(data){
 		let copyRoot = this.root;
 		while (this.root.right){
 			this.root = this.root.right;
 		}
 
-		this.root.right = new TreeNode(40);
+		this.root.right = new TreeNode(data, this.root);
 		this.root = copyRoot;
 	}
 

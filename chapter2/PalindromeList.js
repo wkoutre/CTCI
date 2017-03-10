@@ -1,7 +1,7 @@
 const { List, makeList } = require('./LinkedLists');
 
 const palindromeList = (list) => {
-	if (!list)
+	if (!list || !list.data)
 		throw new Error('Please input a valid list.');
 
 	/*
@@ -37,7 +37,6 @@ const palindromeList = (list) => {
 	}
 
 	let stopping = len % 2 === 0 ? len / 2 : Math.floor(len / 2);
-	rev.printList();
 
 	for (stopping; stopping > 0; stopping--){
 		// console.log('Rev data:', rev.data);
@@ -52,5 +51,4 @@ const palindromeList = (list) => {
 	return true;
 }
 
-let list1 = makeList('palsp'.split(''));
-console.log(palindromeList(list1.head));
+module.exports = { palindromeList };

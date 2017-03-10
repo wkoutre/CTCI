@@ -11,10 +11,6 @@ class List {
 		this.length = 1,
 		this.last = this.head,
 		this.first = this.head
-	}	
-
-	length() {
-		return this.length;
 	}
 
 	pushBack(data) {
@@ -22,6 +18,15 @@ class List {
 		this.last.next = node;
 		this.last = this.last.next;
 		this.length++;
+	}
+
+	pushNodeBack(node) {
+		this.last.next = node;
+		this.length++;
+		while (this.last.next){
+			this.last = this.last.next;
+			this.length++;
+		}
 	}
 
 	pushFront(data){
@@ -52,19 +57,39 @@ class List {
 		this.head = copy;
 		console.log("End List:", arr);
 	}
+
+	toArr() {
+		let arr = [];
+		let copy = this.head;
+
+		while (this.head){
+			arr.push(this.head.data);
+			this.head = this.head.next;
+		}
+
+		this.head = copy;
+		return arr;	
+	}
+
+	getFront() {
+		let ret = this.head;
+		this.head = this.head.next;
+
+		return ret;
+	}
 }
 
 makeList = (arr) => {
 	if (!arr || typeof arr !== 'object')
 		throw new Error("Invalid array.")
 
-	let head = new List(arr[0]);
+	let list = new List(arr[0]);
 
 	for (let i = 1; i < arr.length; i++){
-		head.pushBack(arr[i]);
+		list.pushBack(arr[i]);
 	}
 
-	return head;
+	return list;
 }
 
-module.exports = { List, makeList };
+module.exports = { List, makeList, Node };

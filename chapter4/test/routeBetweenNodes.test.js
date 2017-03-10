@@ -17,7 +17,7 @@ const makeGraph = () => {
 	return graph;
 }
 
-describe('Graph construction', () => {
+describe('RouteBetweenNodes', () => {
 	it('Should create the graph correctly', () => {
 		let graph = makeGraph();
 
@@ -25,9 +25,7 @@ describe('Graph construction', () => {
 		assert.deepEqual(graph.vertices[2], [1, 3, 4]);
 		assert.deepEqual(graph.vertices[4], []);
 	});
-});
 
-describe('RouteBetweenNodes functions correctly', () => {
 	it('Should return TRUE when there IS a route', () => {
 		let graph = makeGraph();
 
@@ -51,10 +49,20 @@ describe('RouteBetweenNodes functions correctly', () => {
 		assert.equal(graph.routeBetweenNodes(4, 1), false);
 		assert.equal(graph.routeBetweenNodes(4, 2), false);
 		assert.equal(graph.routeBetweenNodes(4, 3), false);
-
 	});
 
-	// it('Should return FALSE when there is NO route', () => {
-	// 	let graph = makeGraph();
-	// })
+	it('Should return FALSE when there\'s NO route', () => {
+		let graph = makeGraph();
+
+		assert.equal(graph.routeBetweenNodes(1, 3), false);
+		assert.equal(graph.routeBetweenNodes(1, 2), false);
+		assert.equal(graph.routeBetweenNodes(1, 0), false);
+		assert.equal(graph.routeBetweenNodes(2, 0), false);
+		assert.equal(graph.routeBetweenNodes(3, 0), false);
+		assert.equal(graph.routeBetweenNodes(3, 2), false);
+		assert.equal(graph.routeBetweenNodes(4, 0), false);
+		assert.equal(graph.routeBetweenNodes(4, 1), false);
+		assert.equal(graph.routeBetweenNodes(4, 2), false);
+		assert.equal(graph.routeBetweenNodes(4, 3), false);
+	});
 })
