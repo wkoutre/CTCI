@@ -62,3 +62,15 @@ const buildOrder = (projects, dependencies) => {
 module.exports = { buildOrder }
 
 // e, f, b, d, a, c
+
+arr = [1, 2, 3, 4, 5];
+
+let max = arr.reduce(function(acc, current) {
+	if (current % 2)
+		return acc.push(current);
+	else {
+		return acc;
+	}
+}, [])
+
+arr.filter(a => a % 0);
